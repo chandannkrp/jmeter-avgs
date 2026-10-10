@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.3",
+    "info": {"title": "Users API", "version": "1.0.0"},
+    "servers": [{"url": "https://api.example.com"}],
+    "components": {
+      "securitySchemes": {"bearerAuth": {"type": "http", "scheme": "bearer"}},
+      "schemas": {
+        "Login": {"type": "object", "properties": {
+          "username": {"type": "string", "example": "demo"},
+          "password": {"type": "string", "example": "secret"}}},
+        "Order": {"type": "object", "properties": {
+          "userId": {"type": "integer"},
+          "items": {"type": "array", "items": {"type": "object", "properties": {
+            "sku": {"type": "string"}, "qty": {"type": "integer"}}}}}}
+      }
+    },
+    "paths": {
+      "/api/users": {"get": {"summary": "List users",
+        "parameters": [{"name": "limit", "in": "query", "schema": {"type": "integer", "default": 20}}],
+        "responses": {"200": {"description": "ok"}}}},
+      "/api/users/{id}": {"get": {"summary": "Get user",
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {"200": {"description": "ok"}}}},
+      "/api/login": {"post": {"summary": "Login",
+        "requestBody": {"content": {"application/json": {"schema": {"$ref": "#/components/schemas/Login"}}}},
+        "responses": {"200": {"description": "ok"}}}},
+      "/api/orders": {"post": {"summary": "Create order",
+        "requestBody": {"content": {"application/json": {"schema": {"$ref": "#/components/schemas/Order"}}}},
+        "responses": {"201": {"description": "created"}}}}
+    }
+  }
