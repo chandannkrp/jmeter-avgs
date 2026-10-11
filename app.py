@@ -126,7 +126,7 @@ with st.sidebar:
 
 # ---------- Main: chat ----------
 st.title("🕶️ JMeter : Fury Fleet")
-st.caption("AI agents for JMeter load testing and performance analysis. Inspired by Marvel Characters and loved by the creator of the solution")
+st.caption("AI agents for JMeter load testing and performance analysis. Inspired by Marvel Characters and loved by QA engineers.")
 
 
 for m in st.session_state.messages:
